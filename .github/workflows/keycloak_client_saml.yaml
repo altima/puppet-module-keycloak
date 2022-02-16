@@ -52,14 +52,9 @@ jobs:
         keycloak_version:
           - "16.1.1"
         keycloak_full:
-          - "no"
+          - "yes"
         keycloak_domain_mode_cluster:
           - "no"
-        include:
-          - set: "centos-7"
-            puppet: "puppet7"
-            keycloak_version: "16.1.1"
-            keycloak_full: "yes"
     env:
       BUNDLE_WITHOUT: development:release
       BEAKER_debug: true
