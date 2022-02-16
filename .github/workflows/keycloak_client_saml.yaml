@@ -46,7 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         set:
-          - "debian-11"
+          - "centos-7"
         puppet:
           - "puppet7"
         keycloak_version:
