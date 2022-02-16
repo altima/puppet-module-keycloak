@@ -14,18 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - ruby: 2.5.7
-            puppet: 6
-            fixtures: .fixtures.yml
-            allow_failure: false
           - ruby: 2.7.0
             puppet: 7
             fixtures: .fixtures.yml
             allow_failure: false
-          - ruby: 2.5.7
-            puppet: 6
-            fixtures: .fixtures-latest.yml
-            allow_failure: true
           - ruby: 2.7.0
             puppet: 7
             fixtures: .fixtures-latest.yml
@@ -56,7 +48,6 @@ jobs:
         set:
           - "debian-11"
         puppet:
-          - "puppet6"
           - "puppet7"
         keycloak_version:
           - "16.1.1"
@@ -69,10 +60,6 @@ jobs:
             puppet: "puppet7"
             keycloak_version: "16.1.1"
             keycloak_full: "yes"
-          - set: "centos-7-domain-mode-cluster"
-            puppet: "puppet7"
-            keycloak_version: "16.1.1"
-            keycloak_domain_mode_cluster: "yes"
     env:
       BUNDLE_WITHOUT: development:release
       BEAKER_debug: true
