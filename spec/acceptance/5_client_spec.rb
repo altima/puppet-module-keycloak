@@ -21,6 +21,7 @@ describe 'keycloak_client define:', if: RSpec.configuration.keycloak_full do
         service_accounts_enabled       => true,
         browser_flow                   => 'foo',
         roles                          => ['bar_role', 'other_bar_role'],
+        admin_url                      => 'https://test.foo.bar',
       }
       keycloak_client { 'test.foo.baz':
         realm                          => 'test',
@@ -32,6 +33,7 @@ describe 'keycloak_client define:', if: RSpec.configuration.keycloak_full do
         authorization_services_enabled => false,
         service_accounts_enabled       => true,
         browser_flow                   => 'foo',
+        admin_url                      => 'https://test.foo.bar',
       }
       EOS
 
@@ -51,6 +53,7 @@ describe 'keycloak_client define:', if: RSpec.configuration.keycloak_full do
         expect(data['authorizationServicesEnabled']).to eq(nil)
         expect(data['serviceAccountsEnabled']).to eq(true)
         expect(data['authenticationFlowBindingOverrides']['browser']).to eq('foo-test')
+        expect(data['adminUrl']).to eq('https://test.foo.bar')
       end
     end
 
@@ -107,6 +110,7 @@ describe 'keycloak_client define:', if: RSpec.configuration.keycloak_full do
         authorization_services_enabled => true,
         service_accounts_enabled       => true,
         roles                          => ['bar_role'],
+        admin_url                      => 'https://test.foo.bar',
       }
       keycloak_client { 'test.foo.baz':
         realm                          => 'test',
@@ -119,6 +123,7 @@ describe 'keycloak_client define:', if: RSpec.configuration.keycloak_full do
         service_accounts_enabled       => true,
         browser_flow                   => 'browser',
         roles                          => ['baz_role'],
+        admin_url                      => 'https://test.foo.bar',
       }
       EOS
 
@@ -138,6 +143,7 @@ describe 'keycloak_client define:', if: RSpec.configuration.keycloak_full do
         expect(data['authorizationServicesEnabled']).to eq(true)
         expect(data['serviceAccountsEnabled']).to eq(true)
         expect(data['authenticationFlowBindingOverrides']).to eq({})
+        expect(data['adminUrl']).to eq('https://test.foo.bar/test')
       end
     end
 
