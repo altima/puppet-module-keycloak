@@ -167,6 +167,112 @@ Manage Keycloak clients
     desc 'baseUrl'
   end
 
+  newproperty(:saml_authn_statement, boolean: true) do
+    desc 'samlAuthnStatement'
+    newvalues(:true, :false)
+    defaultto :true
+  end
+
+  newproperty(:saml_one_time_use_condition, boolean: true) do
+    desc 'samlOneTimeUseCondition'
+    newvalues(:true, :false)
+    defaultto :false
+  end
+
+  newproperty(:saml_artifact_binding, boolean: true) do
+    desc 'samlArtifactBinding'
+    newvalues(:true, :false)
+    defaultto :false
+  end
+
+  newproperty(:saml_server_signature, boolean: true) do
+    desc 'samlServerSignature'
+    newvalues(:true, :false)
+    defaultto :true
+  end
+
+  newproperty(:saml_server_signature_enable_key_info_extension, boolean: true) do
+    desc 'samlServerSignatureEnableKeyInfoExtension'
+    newvalues(:true, :false)
+    defaultto :false
+  end
+
+  newproperty(:saml_assertion_signature, boolean: true) do
+    desc 'samlAssertionSignature'
+    newvalues(:true, :false)
+    defaultto :false
+  end
+
+  newproperty(:signature_algorithm) do
+    desc 'signatureAlgorithm'
+    defaultto('RSA_SHA256')
+    newvalues('RSA_SHA1', 'RSA_SHA256', 'RSA_SHA256_MGF1', 'RSA_SHA512', 'RSA_SHA512_MGF1', 'DSA_SHA1')
+    munge { |v| v }
+  end
+
+  newproperty(:saml_xml_key_name_tranformer) do
+    desc 'samlXmlKeyNameTranformer'
+    defaultto('KEY_ID')
+    newvalues('NONE', 'KEY_ID', 'CERT_SUBJECT')
+    munge { |v| v }
+  end
+
+  newproperty(:canonicalization) do
+    desc 'canonicalization'
+    defaultto('EXCLUSIVE')
+    newvalues('EXCLUSIVE', 'EXCLUSIVE_WITH_COMMENTS', 'INCLUSIVE', 'INCLUSIVE_WITH_COMMENTS')
+    munge { |v| v }
+  end
+
+  newproperty(:master_saml_url) do
+    desc 'masterSamlUrl'
+  end
+
+  newproperty(:url_reference_name) do
+    desc 'urlReferenceName'
+  end
+
+  newproperty(:saml_encrypt, boolean: true) do
+    desc 'samlEncrypt'
+    newvalues(:true, :false)
+    defaultto :false
+  end
+
+  newproperty(:saml_client_signature, boolean: true) do
+    desc 'samlClientSignature'
+    newvalues(:true, :false)
+    defaultto :true
+  end
+
+  newproperty(:saml_force_post_binding, boolean: true) do
+    desc 'samlForcePostBinding'
+    newvalues(:true, :false)
+    defaultto :true
+  end
+
+  newproperty(:frontchannel_logout, boolean: true) do
+    desc 'frontchannelLogout'
+    newvalues(:true, :false)
+    defaultto :true
+  end
+
+  newproperty(:saml_force_name_id_format, boolean: true) do
+    desc 'samlForceNameIdFormat'
+    newvalues(:true, :false)
+    defaultto :false
+  end
+
+  newproperty(:name_id_format) do
+    desc 'nameIdFormat'
+    defaultto('username')
+    newvalues('username', 'email', 'transient', 'persistent')
+    munge { |v| v }
+  end
+
+  newproperty(:idp_initiated_relay_state) do
+    desc 'idpInitiatedRelayState'
+  end
+
   newproperty(:web_origins, array_matching: :all, parent: PuppetX::Keycloak::ArrayProperty) do
     desc 'webOrigins'
     defaultto []
